@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="theme-color" content="#080a12">
-    <meta name="description" content="Lerne Ben Talion kennen: Autor, Übersetzer, Lektor und ein Mensch mit einer ungewöhnlichen Lebensgeschichte.">
+    <meta name="theme-color" content="#0b0915">
+    <meta name="description" content="Die offizielle, nicht vollständig zuverlässige Akte über Ben Talion: Autor, Übersetzer, Lektor und ein Mensch, dessen Lebenslauf offenbar von mehreren Autoren gleichzeitig geschrieben wurde.">
 
-    <title>Über mich – Ben Talion's World</title>
+    <title>Über Ben Talion – Eine Akte von zweifelhafter Seriosität</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,13 +16,17 @@
     <style>
         :root {
             color-scheme: dark;
-            --bg: #080a12;
-            --surface: rgba(14, 17, 28, 0.9);
+
+            --bg: #0b0915;
+            --surface: rgba(21, 17, 35, 0.91);
+            --surface-light: rgba(33, 25, 49, 0.88);
             --gold: #d8b66a;
-            --gold-light: #f0d89b;
-            --text: #eeeae2;
-            --muted: #b2b1bb;
-            --border: rgba(216, 182, 106, 0.25);
+            --gold-light: #f4dfa5;
+            --violet: #aa91e8;
+            --violet-light: #d1c2ff;
+            --text: #f0ecf4;
+            --muted: #bbb3ca;
+            --border: rgba(216, 182, 106, 0.26);
             --content-width: 1050px;
         }
 
@@ -33,12 +36,13 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 90px;
+            scroll-padding-top: 100px;
         }
 
         body {
             margin: 0;
             min-height: 100vh;
+            overflow-x: hidden;
             background: var(--bg);
             color: var(--text);
             font-family: "Inter", sans-serif;
@@ -49,11 +53,13 @@
             content: "";
             position: fixed;
             inset: 0;
-            z-index: -2;
+            z-index: -3;
             background:
                 linear-gradient(
-                    rgba(8, 10, 18, 0.89),
-                    rgba(8, 10, 18, 0.96)
+                    120deg,
+                    rgba(11, 9, 21, 0.94),
+                    rgba(11, 9, 21, 0.86) 58%,
+                    rgba(28, 15, 43, 0.83)
                 ),
                 url("universum.jpg") center / cover no-repeat;
         }
@@ -62,13 +68,19 @@
             content: "";
             position: fixed;
             inset: 0;
-            z-index: -1;
+            z-index: -2;
             pointer-events: none;
-            background: radial-gradient(
-                ellipse at 80% 20%,
-                rgba(91, 67, 120, 0.12),
-                transparent 55%
-            );
+            background:
+                radial-gradient(
+                    ellipse at 85% 15%,
+                    rgba(113, 77, 160, 0.17),
+                    transparent 45%
+                ),
+                radial-gradient(
+                    ellipse at 12% 75%,
+                    rgba(53, 62, 133, 0.11),
+                    transparent 45%
+                );
         }
 
         a {
@@ -86,13 +98,85 @@
             outline-offset: 5px;
         }
 
+        ::selection {
+            color: #100c19;
+            background: var(--gold-light);
+        }
+
+        /* Der Sternenhimmel hat die Personalabteilung informiert. */
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--gold-light);
+            box-shadow: 0 0 12px rgba(244, 223, 165, 0.7);
+            opacity: 0.35;
+            animation: star-pulse 5s ease-in-out infinite alternate;
+        }
+
+        .star:nth-child(1) {
+            top: 12%;
+            left: 13%;
+        }
+
+        .star:nth-child(2) {
+            top: 27%;
+            left: 84%;
+            animation-delay: -2s;
+        }
+
+        .star:nth-child(3) {
+            top: 59%;
+            left: 74%;
+            animation-delay: -3s;
+            background: var(--violet-light);
+        }
+
+        .star:nth-child(4) {
+            top: 83%;
+            left: 21%;
+            animation-delay: -1s;
+        }
+
+        .star:nth-child(5) {
+            top: 44%;
+            left: 8%;
+            animation-delay: -4s;
+            background: var(--violet-light);
+        }
+
+        @keyframes star-pulse {
+            from {
+                opacity: 0.15;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 0.75;
+                transform: scale(1.35);
+            }
+        }
+
+        /* Navigation */
+
         .site-header {
             position: sticky;
             top: 0;
             z-index: 20;
             border-bottom: 1px solid var(--border);
-            background: rgba(8, 10, 18, 0.9);
-            backdrop-filter: blur(16px);
+            background: rgba(11, 9, 21, 0.9);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
         }
 
         .header-inner {
@@ -108,6 +192,7 @@
         .brand {
             display: inline-flex;
             flex-direction: column;
+            flex-shrink: 0;
             line-height: 1.25;
         }
 
@@ -116,13 +201,18 @@
             font-family: "Cinzel", serif;
             font-size: 1.15rem;
             font-weight: 700;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
+            transition: text-shadow 200ms ease;
+        }
+
+        .brand:hover .brand-name {
+            text-shadow: 0 0 20px rgba(216, 182, 106, 0.45);
         }
 
         .brand-tagline {
             margin-top: 5px;
             color: var(--muted);
-            font-size: 0.67rem;
+            font-size: 0.64rem;
             letter-spacing: 0.13em;
             text-transform: uppercase;
         }
@@ -130,13 +220,13 @@
         .desktop-nav {
             display: flex;
             align-items: center;
-            gap: 23px;
+            gap: 21px;
         }
 
         .desktop-nav a,
         .mobile-nav a {
             color: var(--muted);
-            font-size: 0.9rem;
+            font-size: 0.87rem;
             transition: color 180ms ease;
         }
 
@@ -147,11 +237,35 @@
             color: var(--gold-light);
         }
 
+        .desktop-nav a {
+            position: relative;
+        }
+
+        .desktop-nav a::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -7px;
+            left: 0;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 200ms ease;
+        }
+
+        .desktop-nav a:hover::after,
+        .desktop-nav a[aria-current="page"]::after {
+            transform: scaleX(1);
+        }
+
         .menu-toggle {
             display: none;
+            align-items: center;
+            gap: 8px;
             padding: 9px 14px;
             border: 1px solid var(--border);
-            border-radius: 5px;
+            border-radius: 4px;
             background: transparent;
             color: var(--gold-light);
             cursor: pointer;
@@ -174,8 +288,24 @@
             margin: 0 auto;
         }
 
+        /* Einstieg */
+
         .intro {
-            padding: 75px 0 50px;
+            position: relative;
+            padding: 90px 0 58px;
+            animation: entrance 750ms ease both;
+        }
+
+        @keyframes entrance {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .eyebrow {
@@ -184,7 +314,7 @@
             gap: 12px;
             margin: 0 0 18px;
             color: var(--gold);
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 600;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -194,6 +324,7 @@
             content: "";
             width: 34px;
             height: 1px;
+            flex-shrink: 0;
             background: var(--gold);
         }
 
@@ -206,9 +337,10 @@
         }
 
         h1 {
+            max-width: 850px;
             margin: 0;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            letter-spacing: -0.03em;
+            font-size: clamp(2.6rem, 7vw, 5rem);
+            letter-spacing: -0.035em;
         }
 
         h1 span {
@@ -216,18 +348,43 @@
         }
 
         .intro-text {
-            max-width: 680px;
-            margin: 20px 0 0;
-            color: var(--muted);
-            font-size: 1.05rem;
+            max-width: 720px;
+            margin: 22px 0 0;
+            color: #d0c9dc;
+            font-size: clamp(1rem, 2vw, 1.1rem);
         }
+
+        .intro-text strong {
+            color: var(--violet-light);
+            font-weight: 500;
+        }
+
+        .file-stamp {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 26px;
+            padding: 8px 12px;
+            border: 1px solid rgba(170, 145, 232, 0.32);
+            background: rgba(24, 18, 39, 0.7);
+            color: var(--violet-light);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .file-stamp span {
+            color: var(--gold);
+        }
+
+        /* Hauptlayout */
 
         .author-layout {
             display: grid;
-            grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.5fr);
+            grid-template-columns: minmax(230px, 0.78fr) minmax(0, 1.55fr);
             align-items: start;
-            gap: 30px;
-            padding-bottom: 75px;
+            gap: 28px;
+            padding-bottom: 80px;
         }
 
         .author-aside {
@@ -239,16 +396,16 @@
             position: relative;
             padding: 10px;
             border: 1px solid var(--border);
-            border-radius: 8px;
             background: var(--surface);
+            box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
         }
 
         .portrait-frame::before {
             content: "";
             position: absolute;
             inset: 5px;
-            border: 1px solid rgba(216, 182, 106, 0.12);
-            border-radius: 5px;
+            z-index: 1;
+            border: 1px solid rgba(216, 182, 106, 0.16);
             pointer-events: none;
         }
 
@@ -258,35 +415,59 @@
             aspect-ratio: 4 / 5;
             object-fit: cover;
             object-position: center;
-            border-radius: 4px;
+            filter: saturate(0.84);
+            transition: filter 300ms ease;
+        }
+
+        .portrait-frame:hover .portrait {
+            filter: saturate(1.05);
         }
 
         .portrait-caption {
-            margin: 15px 0 5px;
+            margin: 17px 0 4px;
             color: var(--gold-light);
             font-family: "Cinzel", serif;
-            font-size: 1rem;
+            font-size: 1.08rem;
             text-align: center;
         }
 
         .portrait-subtitle {
-            margin: 0 0 8px;
+            margin: 0 0 9px;
             color: var(--muted);
-            font-size: 0.8rem;
+            font-size: 0.79rem;
             text-align: center;
         }
 
+        .portrait-classification {
+            margin: 14px 0 0;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            color: var(--violet-light);
+            font-size: 0.72rem;
+            text-align: center;
+        }
+
+        .portrait-classification span {
+            color: var(--muted);
+        }
+
+        /* Biografie */
+
         .bio-card {
-            padding: clamp(22px, 4vw, 40px);
+            padding: clamp(23px, 4vw, 42px);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--surface);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(27, 21, 43, 0.94),
+                    rgba(16, 14, 29, 0.94)
+                );
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
         }
 
         .bio-card p {
             margin: 0 0 22px;
-            color: #d6d3dc;
+            color: #d7d1e0;
         }
 
         .bio-card p:last-child {
@@ -296,8 +477,8 @@
         .bio-card .opening {
             color: var(--gold-light);
             font-family: "Cinzel", serif;
-            font-size: clamp(1.25rem, 2.5vw, 1.65rem);
-            line-height: 1.6;
+            font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+            line-height: 1.65;
         }
 
         .bio-card strong {
@@ -305,55 +486,102 @@
             font-weight: 600;
         }
 
-        .humor-note {
-            margin: 30px 0;
-            padding: 22px 24px;
-            border-left: 2px solid var(--gold);
-            background: rgba(216, 182, 106, 0.07);
+        .violet {
+            color: var(--violet-light);
         }
 
-        .humor-note p {
+        .editorial-note {
+            position: relative;
+            margin: 32px 0;
+            padding: 24px 25px;
+            border-left: 2px solid var(--violet);
+            background: rgba(170, 145, 232, 0.075);
+        }
+
+        .editorial-note::before {
+            content: "ANMERKUNG DER REDAKTION";
+            display: block;
+            margin-bottom: 10px;
+            color: var(--violet-light);
+            font-size: 0.67rem;
+            font-weight: 600;
+            letter-spacing: 0.13em;
+        }
+
+        .editorial-note p {
             margin: 0;
             color: var(--text);
             font-family: "Cinzel", serif;
-            font-size: 1.12rem;
+            font-size: 1.08rem;
+            line-height: 1.7;
         }
 
-        .humor-note span {
+        .editorial-note small {
             display: block;
-            margin-top: 8px;
+            margin-top: 10px;
             color: var(--muted);
-            font-family: "Inter", sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
+        }
+
+        .footnote {
+            display: inline-block;
+            padding: 0 2px;
+            border: 0;
+            border-bottom: 1px dotted var(--violet);
+            background: transparent;
+            color: var(--violet-light);
+            cursor: help;
+            font-size: 0.75em;
+            vertical-align: super;
+        }
+
+        .footnote-result {
+            margin: -10px 0 24px !important;
+            padding: 12px 15px;
+            border: 1px solid rgba(170, 145, 232, 0.22);
+            background: rgba(9, 8, 21, 0.6);
+            color: var(--violet-light) !important;
+            font-size: 0.83rem;
+        }
+
+        .footnote-result[hidden] {
+            display: none;
         }
 
         .section-divider {
             height: 1px;
-            margin: 35px 0;
+            margin: 38px 0;
             border: 0;
-            background: var(--border);
+            background: linear-gradient(
+                90deg,
+                var(--gold),
+                rgba(170, 145, 232, 0.25),
+                transparent
+            );
         }
 
+        /* Lebenslauf */
+
         .timeline-section {
-            margin-top: 30px;
+            margin-top: 32px;
         }
 
         .timeline-section h2 {
             margin: 0 0 12px;
             color: var(--gold-light);
-            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-size: clamp(1.55rem, 3vw, 2.15rem);
         }
 
         .timeline-intro {
-            margin-bottom: 28px !important;
+            margin-bottom: 27px !important;
             color: var(--muted) !important;
-            font-size: 0.92rem;
+            font-size: 0.91rem;
         }
 
         .timeline {
             position: relative;
             margin: 0;
-            padding: 0 0 0 25px;
+            padding: 0 0 0 27px;
             list-style: none;
         }
 
@@ -369,74 +597,184 @@
 
         .timeline li {
             position: relative;
-            margin-bottom: 18px;
-            color: #d6d3dc;
+            margin-bottom: 20px;
+            color: #d6d0e0;
         }
 
         .timeline li::before {
             content: "";
             position: absolute;
-            top: 10px;
-            left: -24px;
+            top: 11px;
+            left: -26px;
             width: 7px;
             height: 7px;
             border: 1px solid var(--gold);
             border-radius: 50%;
             background: var(--bg);
+            box-shadow: 0 0 10px rgba(216, 182, 106, 0.12);
         }
 
         .timeline li:last-child {
-            margin-bottom: 0;
             color: var(--gold-light);
-            font-weight: 600;
         }
 
+        .timeline small {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 0.79rem;
+        }
+
+        .timeline li:last-child small {
+            color: var(--violet-light);
+        }
+
+        .timeline-classified {
+            margin-top: 27px;
+            padding: 15px 17px;
+            border: 1px dashed rgba(170, 145, 232, 0.3);
+            color: var(--muted);
+            font-size: 0.81rem;
+        }
+
+        .timeline-classified strong {
+            color: var(--violet-light);
+        }
+
+        /* Kleine interaktive Akte */
+
+        .bureaucracy {
+            margin-top: 36px;
+            border: 1px solid rgba(216, 182, 106, 0.24);
+            background: rgba(10, 9, 20, 0.62);
+        }
+
+        .bureaucracy-header {
+            padding: 18px 21px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(216, 182, 106, 0.045);
+        }
+
+        .bureaucracy-header h3 {
+            margin: 0;
+            color: var(--gold-light);
+            font-size: 1.05rem;
+        }
+
+        .bureaucracy-header p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .bureaucracy-body {
+            padding: 21px;
+        }
+
+        .bureaucracy-body p {
+            margin: 0 0 15px;
+            font-size: 0.9rem;
+        }
+
+        .bureaucracy-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bureaucracy button {
+            padding: 9px 13px;
+            border: 1px solid rgba(170, 145, 232, 0.5);
+            background: transparent;
+            color: var(--violet-light);
+            cursor: pointer;
+            font-size: 0.82rem;
+            transition: background 180ms ease, border-color 180ms ease;
+        }
+
+        .bureaucracy button:hover {
+            border-color: var(--violet-light);
+            background: rgba(170, 145, 232, 0.1);
+        }
+
+        .bureaucracy-answer {
+            margin-top: 17px !important;
+            padding: 14px;
+            border-left: 2px solid var(--gold);
+            background: rgba(216, 182, 106, 0.06);
+            color: var(--text);
+        }
+
+        .bureaucracy-answer[hidden] {
+            display: none;
+        }
+
+        /* Kontakt */
+
         .contact-panel {
-            margin: 0 0 75px;
-            padding: clamp(25px, 5vw, 45px);
+            position: relative;
+            margin: 0 0 70px;
+            padding: clamp(27px, 5vw, 48px);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            background: linear-gradient(
-                110deg,
-                rgba(216, 182, 106, 0.08),
-                rgba(14, 17, 28, 0.92)
-            );
+            background:
+                radial-gradient(
+                    ellipse at 100% 0,
+                    rgba(113, 77, 160, 0.14),
+                    transparent 55%
+                ),
+                linear-gradient(
+                    110deg,
+                    rgba(216, 182, 106, 0.07),
+                    rgba(21, 17, 35, 0.95)
+                );
         }
 
         .contact-panel h2 {
+            max-width: 690px;
             margin: 0 0 12px;
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-size: clamp(1.6rem, 3.5vw, 2.3rem);
         }
 
-        .contact-panel p {
-            max-width: 650px;
+        .contact-panel > p:not(.eyebrow) {
+            max-width: 680px;
             margin: 0;
             color: var(--muted);
         }
 
         .button {
             display: inline-flex;
-            min-height: 46px;
+            min-height: 47px;
             align-items: center;
             justify-content: center;
-            margin-top: 22px;
+            gap: 9px;
+            margin-top: 24px;
             padding: 11px 19px;
             border: 1px solid var(--gold);
-            border-radius: 4px;
             background: var(--gold);
             color: #14120d;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 600;
-            transition: background 180ms ease;
+            transition:
+                background 180ms ease,
+                transform 180ms ease,
+                box-shadow 180ms ease;
         }
 
         .button:hover {
+            transform: translateY(-2px);
             background: var(--gold-light);
+            box-shadow: 0 6px 24px rgba(216, 182, 106, 0.12);
         }
+
+        .contact-disclaimer {
+            margin-top: 15px;
+            color: var(--muted);
+            font-size: 0.76rem;
+        }
+
+        /* Footer */
 
         .site-footer {
             border-top: 1px solid var(--border);
-            background: rgba(8, 10, 18, 0.7);
+            background: rgba(8, 7, 16, 0.88);
         }
 
         .footer-inner {
@@ -448,7 +786,7 @@
             justify-content: space-between;
             gap: 12px 25px;
             color: var(--muted);
-            font-size: 0.8rem;
+            font-size: 0.79rem;
         }
 
         .footer-links {
@@ -459,6 +797,22 @@
 
         .footer-links a:hover {
             color: var(--gold-light);
+        }
+
+        .footer-note {
+            width: 100%;
+            color: rgba(187, 179, 202, 0.58);
+            font-size: 0.72rem;
+        }
+
+        @media (max-width: 900px) {
+            .desktop-nav {
+                gap: 13px;
+            }
+
+            .desktop-nav a {
+                font-size: 0.79rem;
+            }
         }
 
         @media (max-width: 760px) {
@@ -472,18 +826,16 @@
 
             .menu-toggle {
                 display: inline-flex;
-                align-items: center;
-                gap: 8px;
             }
 
             .intro {
-                padding-top: 55px;
+                padding: 62px 0 42px;
             }
 
             .author-layout {
                 grid-template-columns: 1fr;
                 gap: 25px;
-                padding-bottom: 50px;
+                padding-bottom: 55px;
             }
 
             .author-aside {
@@ -501,19 +853,52 @@
             }
         }
 
+        @media (max-width: 420px) {
+            main,
+            .header-inner,
+            .footer-inner {
+                width: min(100% - 30px, var(--content-width));
+            }
+
+            .brand-name {
+                font-size: 1rem;
+            }
+
+            .brand-tagline {
+                font-size: 0.57rem;
+            }
+
+            .bio-card {
+                padding: 22px;
+            }
+
+            .editorial-note {
+                padding: 20px;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
             *::after {
                 scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
                 animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="stars" aria-hidden="true">
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+    </div>
+
     <header class="site-header">
         <div class="header-inner">
             <a class="brand" href="index.html" aria-label="Ben Talion's World – Startseite">
@@ -554,15 +939,21 @@
 
     <main>
         <section class="intro">
-            <p class="eyebrow">Das Wesen hinter den Welten</p>
+            <p class="eyebrow">Abteilung für ungewöhnliche Lebensläufe</p>
 
             <h1>Über den <span>Autor.</span></h1>
 
             <p class="intro-text">
-                Manche Menschen haben einen geradlinigen Lebenslauf.
-                Andere sammeln Berufe, Interessen und Erfahrungen wie
-                andere Leute Briefmarken. Willkommen in meiner Kategorie.
+                Jeder Mensch ist eine Geschichte. Manche sind Tragödien,
+                manche Komödien und manche offenbar das Ergebnis einer
+                Ausschusssitzung, bei der niemand das Protokoll geführt hat.
+                <strong>Dies ist die Akte Ben Talion.</strong>
             </p>
+
+            <div class="file-stamp">
+                <span aria-hidden="true">◆</span>
+                Akte BT-001 · Einstufung: bemerkenswert eigenartig
+            </div>
         </section>
 
         <div class="author-layout">
@@ -576,8 +967,15 @@
                     >
 
                     <p class="portrait-caption">Ben Talion</p>
+
                     <p class="portrait-subtitle">
-                        Autor. Übersetzer. Lektor. Ei-Experte.
+                        Autor. Übersetzer. Lektor.
+                        Gelegentlich ein Ei.
+                    </p>
+
+                    <p class="portrait-classification">
+                        <span>Offizielle Einstufung:</span><br>
+                        Mensch mit Fußnotenpotenzial
                     </p>
                 </div>
             </aside>
@@ -588,73 +986,246 @@
                 </p>
 
                 <p>
-                    Das erklärt vielleicht schon einiges. Den Rest versuchen
-                    wir gemeinsam herauszufinden.
+                    Das ist zumindest die Erklärung, die ich für meinen
+                    Lebenslauf anbiete. Die Wissenschaft hat dazu noch keine
+                    abschließende Meinung veröffentlicht. Sie wurde allerdings
+                    auch nicht gefragt.
                 </p>
 
                 <p>
-                    In der 11. Klasse hatte ich in beiden Halbjahren eine
-                    <strong>5 in Deutsch</strong> auf dem Zeugnis zu stehen.
-                    Deswegen wollte ich Autor werden – um die Welt mit meiner
-                    schrecklichen Rechtschreibung und Ausdrucksweise zu unterjochen.
+                    In der 11. Klasse stand in beiden Halbjahren eine
+                    <strong>5 in Deutsch</strong> auf meinem Zeugnis.
+                    Eine bemerkenswerte Leistung, wenn man bedenkt, dass
+                    die deutsche Sprache über Jahrhunderte hinweg alles
+                    darangesetzt hat, Menschen mit einem Hang zu Kommas
+                    und Nebensätzen in die Verzweiflung zu treiben.
                 </p>
 
-                <div class="humor-note">
+                <p>
+                    Meine Reaktion darauf war vollkommen logisch:
+                    Ich beschloss, Autor zu werden. Wenn man eine Sprache
+                    nicht zuverlässig beherrscht, sollte man schließlich
+                    möglichst viele Seiten damit füllen.
+                </p>
+
+                <div class="editorial-note">
                     <p>
-                        Man muss seine Schwächen kennen.
-                        Oder sie konsequent zu einer Karriere ausbauen.
+                        Manche Menschen überwinden ihre Schwächen.
+                        Andere geben ihnen einen Namen, einen Buchvertrag
+                        und eine eigene ISBN.
                     </p>
-                    <span>Eine möglicherweise fragwürdige Lebensphilosophie.</span>
+                    <small>
+                        Die Personalabteilung empfiehlt, diesen Absatz
+                        nicht als Berufsberatung zu verwenden.
+                    </small>
                 </div>
 
                 <p>
-                    Wenigstens bin ich in Englisch so gut, dass ich meine Bücher
-                    und die meiner Frau selbstständig ins Englische übersetzt habe.
+                    Inzwischen schreibe ich Bücher und habe auch die Bücher
+                    meiner Frau selbstständig ins Englische übersetzt.
+                    Englisch und ich verstehen uns ausgesprochen gut.
+                    Es ist eine Beziehung, die auf gegenseitigem Respekt
+                    beruht – und darauf, dass Englisch beschlossen hat,
+                    weniger Fragen zu stellen.
                 </p>
 
                 <p>
-                    Und ganz so schlecht kann mein Deutsch nicht sein, da ich
-                    auch Lektorat anbiete. Also bei Interesse einfach melden. :)
+                    Außerdem biete ich Lektorat an. Was zunächst wie ein
+                    Widerspruch aussieht, ist bei näherer Betrachtung
+                    lediglich ein Beweis dafür, dass Menschen lernfähig
+                    sind. Oder zumindest in der Lage, sehr gute Hilfsmittel
+                    zu finden.
+                </p>
+
+                <p>
+                    Ein guter Lektor muss nicht fehlerfrei geboren worden sein.
+                    Er muss Fehler erkennen, verstehen und wissen, wann eine
+                    Regel tatsächlich hilft und wann sie nur wichtig aussieht.
+                    Das ist bei Regeln übrigens eine häufige Eigenschaft.
+                </p>
+
+                <button
+                    class="footnote"
+                    type="button"
+                    id="footnote-button"
+                    aria-expanded="false"
+                    aria-controls="footnote-result"
+                >
+                    Fußnote 1
+                </button>
+
+                <p class="footnote-result" id="footnote-result" hidden>
+                    Die deutsche Rechtschreibung hat zu dieser Biografie
+                    eine Stellungnahme angekündigt. Sie wird voraussichtlich
+                    in einem Nebensatz eintreffen.
+                </p>
+
+                <p>
+                    Mein beruflicher Weg war ähnlich geradlinig wie eine
+                    betrunkene Fledermaus bei Gegenwind. Ich war Bürokaufmann,
+                    habe Soziologie studiert, ein Abgeordnetenbüro geleitet,
+                    mich mit Buchhaltung und IT beschäftigt und mich später
+                    auch mit Datenanalyse auseinandergesetzt.
+                </p>
+
+                <p>
+                    Andere nennen das einen ungewöhnlichen Lebenslauf.
+                    Ich nenne es eine Sammlung von Beweisen dafür, dass
+                    die Wirklichkeit selten einen brauchbaren Gesamtplan
+                    besitzt.
                 </p>
 
                 <hr class="section-divider">
 
                 <section class="timeline-section" id="stationen">
-                    <p class="eyebrow">Ein Leben in mehreren Kapiteln</p>
+                    <p class="eyebrow">Chronologie mit Vorbehalt</p>
 
                     <h2>Stationen meines Lebens</h2>
 
                     <p class="timeline-intro">
-                        Nicht unbedingt die klassische Heldenreise.
-                        Aber immerhin mit einigen unerwarteten Wendungen.
+                        Die folgenden Angaben sind korrekt.
+                        Die Reihenfolge ist historisch gewachsen.
+                        Für die Dramaturgie übernimmt niemand die Haftung.
                     </p>
 
                     <ol class="timeline">
-                        <li>Bürokaufmann</li>
-                        <li>Studium Soziologie</li>
-                        <li>Leitung eines Abgeordnetenbüros</li>
-                        <li>Weiterbildung zur Buchhaltungsfachkraft</li>
-                        <li>Senior IT Analyst</li>
-                        <li>Intensiv Care Officer</li>
-                        <li>Weiterbildung Data Analyst – Python</li>
-                        <li>Autor</li>
+                        <li>
+                            Bürokaufmann
+                            <small>
+                                Erste Begegnung mit Formularen.
+                                Nicht die letzte.
+                            </small>
+                        </li>
+
+                        <li>
+                            Studium Soziologie
+                            <small>
+                                Der Versuch, Menschen zu verstehen.
+                                Ein ambitioniertes Projekt.
+                            </small>
+                        </li>
+
+                        <li>
+                            Leitung eines Abgeordnetenbüros
+                            <small>
+                                Wo Theorie und Wirklichkeit sich
+                                gelegentlich im Flur begegnen.
+                            </small>
+                        </li>
+
+                        <li>
+                            Weiterbildung zur Buchhaltungsfachkraft
+                            <small>
+                                Zahlen sind ehrlich. Meistens.
+                                Und sie widersprechen selten laut.
+                            </small>
+                        </li>
+
+                        <li>
+                            Senior IT Analyst
+                            <small>
+                                Gespräche mit Maschinen können erstaunlich
+                                vernünftig sein.
+                            </small>
+                        </li>
+
+                        <li>
+                            Intensiv Care Officer
+                            <small>
+                                Eine weitere Perspektive auf Menschen
+                                und das, was wirklich zählt.
+                            </small>
+                        </li>
+
+                        <li>
+                            Weiterbildung Data Analyst – Python
+                            <small>
+                                Wenn die Welt schon kompliziert ist,
+                                kann man sie wenigstens analysieren.
+                            </small>
+                        </li>
+
+                        <li>
+                            Autor
+                            <small>
+                                Die Geschichten hatten irgendwann
+                                die Personalhoheit übernommen.
+                            </small>
+                        </li>
                     </ol>
+
+                    <div class="timeline-classified">
+                        <strong>Interne Bewertung:</strong>
+                        Der Kandidat verfügt über eine ungewöhnlich breite
+                        Erfahrungsbasis. Eine abschließende Erklärung
+                        seines Werdegangs liegt nicht vor. Weitere
+                        Nachforschungen erscheinen riskant, aber interessant.
+                    </div>
+                </section>
+
+                <section class="bureaucracy" aria-labelledby="bureaucracy-title">
+                    <div class="bureaucracy-header">
+                        <h3 id="bureaucracy-title">
+                            Antrag auf Erklärung des Lebenslaufs
+                        </h3>
+                        <p>
+                            Formular 7b · Zuständig: Amt für nachträgliche Logik
+                        </p>
+                    </div>
+
+                    <div class="bureaucracy-body">
+                        <p>
+                            Möchtest du erfahren, warum dieser Lebensweg
+                            so viele Kurven hat?
+                        </p>
+
+                        <button
+                            type="button"
+                            id="bureaucracy-button"
+                            aria-expanded="false"
+                            aria-controls="bureaucracy-answer"
+                        >
+                            Erklärung anfordern
+                        </button>
+
+                        <p
+                            class="bureaucracy-answer"
+                            id="bureaucracy-answer"
+                            hidden
+                        >
+                            Der Antrag wurde geprüft. Die zuständige Stelle
+                            teilt mit: Das Leben hält sich nicht an
+                            Gliederungspunkte. Außerdem wurde das Formular
+                            für eine lineare Biografie im Jahr 1998
+                            versehentlich als Lesezeichen verwendet.
+                            Eine neue Version ist in Vorbereitung.
+                        </p>
+                    </div>
                 </section>
             </article>
         </div>
 
         <section class="contact-panel">
-            <p class="eyebrow">Ein Wort ins Universum</p>
+            <p class="eyebrow">Der bürokratisch genehmigte Ausgang</p>
 
-            <h2>Du hast eine Frage oder brauchst ein Lektorat?</h2>
+            <h2>Du brauchst ein Lektorat oder möchtest etwas fragen?</h2>
 
             <p>
                 Ob Buchprojekt, Textkorrektur oder eine andere Anfrage:
-                Ich freue mich über eine Nachricht. Und keine Sorge –
-                auch Texte ohne kosmische Kraftsteine sind willkommen.
+                Ich freue mich über eine Nachricht. Texte müssen übrigens
+                weder fehlerfrei noch von kosmischer Bedeutung sein, um
+                willkommen zu sein.
             </p>
 
-            <a class="button" href="kontakt.html">Kontakt aufnehmen</a>
+            <a class="button" href="kontakt.html">
+                Kontakt aufnehmen <span aria-hidden="true">↗</span>
+            </a>
+
+            <p class="contact-disclaimer">
+                Die Bearbeitung erfolgt durch einen echten Menschen.
+                Über die Frage, ob dieser Mensch vollständig aus einem Ei
+                hervorgegangen ist, liegen keine belastbaren Daten vor.
+            </p>
         </section>
     </main>
 
@@ -670,6 +1241,11 @@
                 <a href="agb.html">AGB</a>
                 <a href="kontakt.html">Kontakt</a>
             </nav>
+
+            <div class="footer-note">
+                Diese Biografie wurde von einer zuständigen Stelle geprüft.
+                Die zuständige Stelle wurde inzwischen selbst Teil der Geschichte.
+            </div>
         </div>
     </footer>
 
@@ -728,6 +1304,48 @@
 
         document.getElementById("current-year").textContent =
             new Date().getFullYear();
+
+        /* Fußnote mit eigener Meinung */
+
+        const footnoteButton = document.getElementById("footnote-button");
+        const footnoteResult = document.getElementById("footnote-result");
+
+        footnoteButton.addEventListener("click", () => {
+            const isOpen =
+                footnoteButton.getAttribute("aria-expanded") === "true";
+
+            footnoteButton.setAttribute("aria-expanded", String(!isOpen));
+            footnoteResult.hidden = isOpen;
+
+            footnoteButton.textContent = isOpen
+                ? "Fußnote 1"
+                : "Fußnote 1 schließen";
+        });
+
+        /* Das Amt für nachträgliche Logik */
+
+        const bureaucracyButton =
+            document.getElementById("bureaucracy-button");
+
+        const bureaucracyAnswer =
+            document.getElementById("bureaucracy-answer");
+
+        bureaucracyButton.addEventListener("click", () => {
+            const isOpen =
+                bureaucracyButton.getAttribute("aria-expanded") === "true";
+
+            bureaucracyButton.setAttribute(
+                "aria-expanded",
+                String(!isOpen)
+            );
+
+            bureaucracyAnswer.hidden = isOpen;
+
+            bureaucracyButton.textContent = isOpen
+                ? "Erklärung anfordern"
+                : "Erklärung wieder zurückziehen";
+        });
     </script>
 </body>
 </html>
+
