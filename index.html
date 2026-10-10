@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#080a12">
+    <meta name="description" content="Willkommen in Ben Talion's World – einem Reich zwischen Licht, Schatten, uralten Kraftsteinen und Geschichten, die ein Eigenleben entwickeln.">
+
+    <title>Ben Talion's World – Zwischen Licht und Schatten</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #080a12;
+            --surface: rgba(14, 17, 28, 0.88);
+            --gold: #d8b66a;
+            --gold-light: #f0d89b;
+            --text: #eeeae2;
+            --muted: #b2b1bb;
+            --border: rgba(216, 182, 106, 0.25);
+            --content-width: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Inter", sans-serif;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(90deg, rgba(8, 10, 18, 0.96), rgba(8, 10, 18, 0.76)),
+                url("universum.jpg") center / cover no-repeat;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at 75% 35%, rgba(83, 65, 118, 0.13), transparent 48%),
+                linear-gradient(180deg, transparent 50%, rgba(8, 10, 18, 0.8));
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--gold-light);
+            outline-offset: 5px;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid var(--border);
+            background: rgba(8, 10, 18, 0.88);
+            backdrop-filter: blur(16px);
+        }
+
+        .header-inner {
+            width: min(100% - 40px, var(--content-width));
+            min-height: 76px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            flex-direction: column;
+            line-height: 1.25;
+        }
+
+        .brand-name {
+            font-family: "Cinzel", serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--gold-light);
+        }
+
+        .brand-tagline {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 0.67rem;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .desktop-nav a,
+        .mobile-nav a {
+            color: var(--muted);
+            font-size: 0.9rem;
+            transition: color 180ms ease;
+        }
+
+        .desktop-nav a:hover,
+        .mobile-nav a:hover,
+        .desktop-nav a[aria-current="page"],
+        .mobile-nav a[aria-current="page"] {
+            color: var(--gold-light);
+        }
+
+        .menu-toggle {
+            display: none;
+            padding: 9px 14px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: transparent;
+            color: var(--gold-light);
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            padding: 10px 24px 22px;
+            border-top: 1px solid var(--border);
+        }
+
+        .mobile-nav.is-open {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        main {
+            width: min(100% - 40px, var(--content-width));
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 590px;
+            display: grid;
+            align-items: center;
+            padding: 80px 0 90px;
+        }
+
+        .hero-content {
+            max-width: 760px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 22px;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Cinzel", serif;
+            font-weight: 500;
+            line-height: 1.25;
+        }
+
+        h1 {
+            max-width: 800px;
+            margin: 0;
+            font-size: clamp(2.7rem, 7vw, 5.5rem);
+            letter-spacing: -0.035em;
+        }
+
+        h1 span {
+            display: block;
+            color: var(--gold-light);
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin: 26px 0 0;
+            color: #d2d0d6;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+        }
+
+        .hero-note {
+            max-width: 600px;
+            margin-top: 17px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition:
+                background 180ms ease,
+                color 180ms ease,
+                transform 180ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: var(--gold);
+            color: #14120d;
+        }
+
+        .button-primary:hover {
+            background: var(--gold-light);
+        }
+
+        .button-secondary {
+            background: rgba(8, 10, 18, 0.45);
+            color: var(--gold-light);
+        }
+
+        .button-secondary:hover {
+            background: rgba(216, 182, 106, 0.12);
+        }
+
+        .section {
+            padding: 72px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-heading {
+            max-width: 720px;
+            margin-bottom: 32px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+        }
+
+        .section-heading p {
+            margin: 15px 0 0;
+            color: var(--muted);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .feature-card {
+            min-height: 225px;
+            padding: 27px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            background: var(--surface);
+            transition:
+                border-color 180ms ease,
+                transform 180ms ease,
+                background 180ms ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(216, 182, 106, 0.65);
+            background: rgba(22, 24, 37, 0.96);
+        }
+
+        .card-number {
+            color: var(--gold);
+            font-family: "Cinzel", serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
+        }
+
+        .feature-card h3 {
+            margin: 16px 0 10px;
+            color: var(--gold-light);
+            font-size: 1.25rem;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        .quote-panel {
+            padding: clamp(25px, 5vw, 55px);
+            border-left: 2px solid var(--gold);
+            background: linear-gradient(
+                110deg,
+                rgba(216, 182, 106, 0.09),
+                rgba(14, 17, 28, 0.82)
+            );
+        }
+
+        .quote-panel blockquote {
+            max-width: 780px;
+            margin: 0;
+            font-family: "Cinzel", serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+            line-height: 1.45;
+        }
+
+        .quote-panel p {
+            margin: 17px 0 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .author-panel {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 30px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            background: var(--surface);
+        }
+
+        .author-panel h2 {
+            margin: 0 0 12px;
+            font-size: clamp(1.5rem, 3vw, 2.1rem);
+        }
+
+        .author-panel p {
+            max-width: 680px;
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .site-footer {
+            margin-top: 25px;
+            border-top: 1px solid var(--border);
+            background: rgba(8, 10, 18, 0.7);
+        }
+
+        .footer-inner {
+            width: min(100% - 40px, var(--content-width));
+            margin: 0 auto;
+            padding: 25px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px 25px;
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-light);
+        }
+
+        @media (max-width: 760px) {
+            .header-inner {
+                min-height: 68px;
+            }
+
+            .desktop-nav {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .hero {
+                min-height: 520px;
+                padding: 75px 0;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                min-height: auto;
+            }
+
+            .author-panel {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+
+            .section {
+                padding: 55px 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html" aria-label="Ben Talion's World – Startseite">
+                <span class="brand-name">BEN TALION</span>
+                <span class="brand-tagline">Zwischen Licht und Schatten</span>
+            </a>
+
+            <nav class="desktop-nav" aria-label="Hauptnavigation">
+                <a href="index.html" aria-current="page">Startseite</a>
+                <a href="about.html">Über mich</a>
+                <a href="meinebücher.html">Meine Bücher</a>
+                <a href="#mission">Meine Mission</a>
+                <a href="kontakt.html">Kontakt</a>
+            </nav>
+
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="mobile-nav"
+            >
+                <span aria-hidden="true">☰</span>
+                <span>Menü</span>
+            </button>
+        </div>
+
+        <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation" hidden>
+            <a href="index.html" aria-current="page">Startseite</a>
+            <a href="about.html">Über mich</a>
+            <a href="meinebücher.html">Meine Bücher</a>
+            <a href="#mission">Meine Mission für die Zukunft</a>
+            <a href="kontakt.html">Kontakt</a>
+            <a href="impressum.html">Impressum</a>
+            <a href="agb.html">AGB</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <p class="eyebrow">Ein Universum voller Möglichkeiten</p>
+
+                <h1 id="hero-title">
+                    Ben Talion's
+                    <span>World</span>
+                </h1>
+
+                <p class="hero-description">
+                    Ein Reich zwischen Licht und Schatten, in dem uralte
+                    Kraftsteine über das Schicksal entscheiden und Geschichten
+                    manchmal ein Eigenleben entwickeln.
+                </p>
+
+                <p class="hero-note">
+                    Neue Welten entstehen, Geheimnisse warten auf ihre
+                    Entdeckung. Und irgendwo versucht vermutlich gerade jemand,
+                    die Regeln des Universums zu verstehen.
+                    Viel Erfolg dabei.
+                </p>
+
+                <div class="actions">
+                    <a class="button button-primary" href="meinebücher.html">
+                        Die Welten entdecken
+                    </a>
+                    <a class="button button-secondary" href="about.html">
+                        Wer steckt dahinter?
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="mission" aria-labelledby="mission-title">
+            <div class="section-heading">
+                <p class="eyebrow">Jenseits des Gewöhnlichen</p>
+                <h2 id="mission-title">Drei Türen. Unzählige Möglichkeiten.</h2>
+                <p>
+                    Nicht alles, was dunkel aussieht, ist böse. Nicht alles,
+                    was logisch klingt, ist vernünftig. Und nicht jede gute
+                    Geschichte hält sich an ihren ursprünglichen Plan.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <a class="feature-card" href="meinebücher.html">
+                    <span class="card-number">01 / DIE WELTEN</span>
+                    <h3>Geschichten & Bücher</h3>
+                    <p>
+                        Entdecke fremde Welten, geheimnisvolle Kraftsteine
+                        und die Geschichten, die daraus entstehen.
+                    </p>
+                </a>
+
+                <a class="feature-card" href="about.html">
+                    <span class="card-number">02 / DER AUTOR</span>
+                    <h3>Der Mensch dahinter</h3>
+                    <p>
+                        Ein ungewöhnlicher Lebensweg, eine ordentliche Portion
+                        Selbstironie und eine Beziehung zur deutschen
+                        Rechtschreibung, die kompliziert begann.
+                    </p>
+                </a>
+
+                <a class="feature-card" href="kontakt.html">
+                    <span class="card-number">03 / DER KONTAKT</span>
+                    <h3>Eine Nachricht ins Universum</h3>
+                    <p>
+                        Fragen, Ideen oder Interesse am Lektorat?
+                        Nachrichten sind willkommen. Schwarze Löcher
+                        werden allerdings nicht persönlich beantwortet.
+                    </p>
+                </a>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Ein Gedanke zum Universum">
+            <div class="quote-panel">
+                <blockquote>
+                    „Die Vernunft hat Ausgang.
+                    Die Geschichten leider nicht.“
+                </blockquote>
+                <p>
+                    Eine inoffizielle Warnung für alle, die dieses Universum betreten.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="author-title">
+            <div class="author-panel">
+                <div>
+                    <p class="eyebrow">Hinter den Geschichten</p>
+                    <h2 id="author-title">Ein Autor mit ungewöhnlicher Vorgeschichte.</h2>
+                    <p>
+                        Vom Bürokaufmann über Soziologie und IT bis hin zum
+                        Autor und Lektor: Der Weg war nicht unbedingt geradlinig.
+                        Aber Geradlinigkeit wird ohnehin überschätzt.
+                    </p>
+                </div>
+
+                <a class="button button-secondary" href="about.html">
+                    Mehr über mich
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&copy; <span id="current-year">2026</span> T-Ben Talion. Alle Rechte vorbehalten.</span>
+
+            <nav class="footer-links" aria-label="Rechtliche Informationen">
+                <a href="impressum.html">Impressum</a>
+                <a href="agb.html">AGB</a>
+                <a href="kontakt.html">Kontakt</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileNav = document.getElementById("mobile-nav");
+
+        function closeMenu() {
+            mobileNav.hidden = true;
+            mobileNav.classList.remove("is-open");
+            menuToggle.setAttribute("aria-expanded", "false");
+        }
+
+        function openMenu() {
+            mobileNav.hidden = false;
+            mobileNav.classList.add("is-open");
+            menuToggle.setAttribute("aria-expanded", "true");
+        }
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        mobileNav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener("click", (event) => {
+            if (
+                !mobileNav.hidden &&
+                !mobileNav.contains(event.target) &&
+                !menuToggle.contains(event.target)
+            ) {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 760) {
+                closeMenu();
+            }
+        });
+
+        document.getElementById("current-year").textContent =
+            new Date().getFullYear();
+    </script>
+</body>
+</html>
