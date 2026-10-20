@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111018">
+  <meta name="description" content="Kontakt zu Ben Talion – für Fragen zu Büchern, Lektorat und Zusammenarbeit.">
+  <title>Kontakt – Ben Talion</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Crimson+Pro:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --night: #111018;
+      --paper: #e9e3df;
+      --muted: #aaa1ad;
+      --gold: #cdb47c;
+      --wine: #80505f;
+      --rule: rgba(205,180,124,.25);
+      --measure: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--paper);
+      background: var(--night);
+      font: 17px/1.78 "Crimson Pro", Georgia, serif;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 82% 17%, rgba(95,53,75,.18), transparent 38%),
+        radial-gradient(ellipse at 7% 70%, rgba(65,60,89,.13), transparent 35%),
+        linear-gradient(135deg, #111018 0%, #171520 54%, #111018 100%);
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 13px;
+      z-index: -1;
+      pointer-events: none;
+      border: 1px solid rgba(205,180,124,.07);
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+    ::selection { color: var(--night); background: var(--gold); }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(17,16,24,.92);
+      border-bottom: 1px solid rgba(205,180,124,.15);
+      backdrop-filter: blur(12px);
+    }
+    .header-inner {
+      width: min(calc(100% - 48px), var(--measure));
+      min-height: 78px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .brand { display: flex; flex-direction: column; flex-shrink: 0; line-height: 1.25; }
+    .brand-name {
+      color: var(--gold);
+      font: 500 1.05rem/1.4 "Cinzel", serif;
+      letter-spacing: .16em;
+    }
+    .brand-tagline {
+      margin-top: 4px;
+      color: var(--muted);
+      font: 400 .68rem/1.4 "Inter", sans-serif;
+      letter-spacing: .08em;
+    }
+    .desktop-nav { display: flex; align-items: center; gap: clamp(15px, 2.4vw, 28px); }
+    .desktop-nav a, .mobile-nav a {
+      color: #c0b8c3;
+      font: 400 .76rem/1.5 "Inter", sans-serif;
+      transition: color .2s ease;
+    }
+    .desktop-nav a:hover, .mobile-nav a:hover,
+    .desktop-nav a[aria-current="page"], .mobile-nav a[aria-current="page"] { color: var(--gold); }
+    .desktop-nav a[aria-current="page"] {
+      text-decoration: underline;
+      text-decoration-color: var(--wine);
+      text-underline-offset: 8px;
+    }
+    .menu-toggle {
+      display: none;
+      padding: 9px 12px;
+      border: 1px solid var(--rule);
+      color: var(--gold);
+      background: transparent;
+      font: 400 .78rem "Inter", sans-serif;
+      cursor: pointer;
+    }
+    .mobile-nav { display: none; padding: 12px 24px 22px; border-top: 1px solid rgba(205,180,124,.12); }
+    .mobile-nav.is-open { display: flex; flex-direction: column; gap: 13px; }
+
+    main { width: min(calc(100% - 48px), var(--measure)); margin: 0 auto; }
+    .page-intro { padding: clamp(54px, 8vw, 94px) 0 38px; }
+    .eyebrow {
+      display: flex; align-items: center; gap: 13px; margin: 0 0 16px;
+      color: var(--gold); font: 500 .68rem/1.5 "Inter", sans-serif;
+      letter-spacing: .23em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--wine); }
+    h1, h2 { font-family: "Cinzel", Georgia, serif; font-weight: 400; }
+    h1 { max-width: 850px; margin: 0; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.13; letter-spacing: -.035em; }
+    h1 span { color: var(--gold); }
+    .intro-bottom { display: flex; align-items: center; gap: 18px; margin-top: 25px; }
+    .intro-rule { width: 72px; height: 1px; background: linear-gradient(90deg, var(--gold), var(--wine)); }
+    .intro-note { color: var(--muted); font-style: italic; font-size: .98rem; }
+    .intro-copy { max-width: 660px; margin: 30px 0 0; color: #c9c0cb; font-size: clamp(1.12rem, 1.8vw, 1.28rem); }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: clamp(38px, 8vw, 100px);
+      padding: 20px 0 100px;
+      align-items: start;
+    }
+    .contact-aside { padding-top: 6px; }
+    .section-kicker {
+      margin: 0 0 10px; color: var(--wine);
+      font: 500 .65rem/1.5 "Inter", sans-serif; letter-spacing: .2em; text-transform: uppercase;
+    }
+    .contact-aside h2, .form-heading {
+      margin: 0 0 20px; color: var(--gold);
+      font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.35;
+    }
+    .contact-aside p { color: #c4bbc7; margin: 0 0 18px; font-size: 1.12rem; }
+    .contact-aside .quiet-note { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--muted); font-style: italic; }
+    .contact-details { margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(205,180,124,.16); }
+    .contact-details .label {
+      margin: 0 0 8px; color: var(--gold); font: 500 .68rem/1.5 "Inter", sans-serif;
+      letter-spacing: .14em; text-transform: uppercase;
+    }
+    .contact-details p { margin: 0; font-size: 1.08rem; }
+    .contact-details a { color: var(--gold); border-bottom: 1px solid rgba(205,180,124,.4); overflow-wrap: anywhere; }
+    .contact-details a:hover { color: #f0dfb2; }
+
+    .contact-form-wrap { border-top: 1px solid var(--rule); padding-top: 22px; }
+    .form-heading { margin-bottom: 8px; }
+    .form-intro { margin: 0 0 25px; color: var(--muted); font-size: 1rem; }
+    .field { margin-bottom: 20px; }
+    label {
+      display: block; margin-bottom: 8px; color: #d9d0d9;
+      font: 500 .72rem/1.5 "Inter", sans-serif; letter-spacing: .04em;
+    }
+    input, textarea {
+      display: block; width: 100%; border: 1px solid rgba(205,180,124,.22);
+      border-radius: 0; padding: 13px 14px; color: var(--paper);
+      background: rgba(8,7,13,.35); font: 400 1rem/1.5 "Crimson Pro", Georgia, serif;
+    }
+    input::placeholder, textarea::placeholder { color: #817887; }
+    input:focus, textarea:focus { border-color: rgba(205,180,124,.75); outline: none; }
+    textarea { min-height: 155px; resize: vertical; }
+    .form-help { margin: -7px 0 18px; color: #8f8795; font: 400 .68rem/1.6 "Inter", sans-serif; }
+    .submit-button {
+      display: inline-flex; align-items: center; gap: 16px;
+      padding: 12px 17px; border: 1px solid rgba(205,180,124,.55);
+      border-radius: 0; color: var(--gold); background: transparent;
+      font: 500 .74rem/1.5 "Inter", sans-serif; letter-spacing: .04em; cursor: pointer;
+      transition: background .2s ease, color .2s ease;
+    }
+    .submit-button::after { content: "↗"; font-size: 1rem; }
+    .submit-button:hover { color: var(--night); background: var(--gold); }
+    .privacy-note { margin: 16px 0 0; color: #8f8795; font: 400 .68rem/1.6 "Inter", sans-serif; }
+    .privacy-note strong { color: #b7adbb; font-weight: 500; }
+
+    .site-footer { border-top: 1px solid rgba(205,180,124,.15); background: rgba(8,7,13,.38); }
+    .footer-inner {
+      width: min(calc(100% - 48px), var(--measure)); margin: 0 auto; padding: 24px 0;
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px;
+      color: #928996; font: 400 .7rem/1.6 "Inter", sans-serif;
+    }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 19px; }
+    .footer-links a:hover { color: var(--gold); }
+
+    @media (max-width: 720px) {
+      body::after { inset: 7px; }
+      .header-inner { min-height: 70px; width: calc(100% - 36px); }
+      .desktop-nav { display: none; }
+      .menu-toggle { display: inline-flex; align-items: center; gap: 8px; }
+      main, .footer-inner { width: calc(100% - 36px); }
+      .page-intro { padding: 54px 0 30px; }
+      .contact-layout { grid-template-columns: 1fr; gap: 48px; padding: 18px 0 65px; }
+      .contact-aside .quiet-note { margin-top: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Ben Talion – Startseite">
+        <span class="brand-name">BEN TALION</span>
+        <span class="brand-tagline">Zwischen Licht und Schatten</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Hauptnavigation">
+        <a href="index.html">Startseite</a>
+        <a href="about.html">Über mich</a>
+        <a href="meinebücher.html">Meine Bücher</a>
+        <a href="kontakt.html" aria-current="page">Kontakt</a>
+      </nav>
+
+      <button class="menu-toggle" id="menu-toggle" type="button"
+              aria-expanded="false" aria-controls="mobile-nav">
+        <span aria-hidden="true">☰</span><span>Menü</span>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation" hidden>
+      <a href="index.html">Startseite</a>
+      <a href="about.html">Über mich</a>
+      <a href="meinebücher.html">Meine Bücher</a>
+      <a href="kontakt.html" aria-current="page">Kontakt</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="agb.html">AGB</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-intro" aria-labelledby="page-title">
+      <p class="eyebrow">Kontakt</p>
+      <h1 id="page-title">Manchmal beginnt etwas mit <span>einer Nachricht.</span></h1>
+      <div class="intro-bottom">
+        <div class="intro-rule" aria-hidden="true"></div>
+        <span class="intro-note">Kein magisches Ritual erforderlich.</span>
+      </div>
+      <p class="intro-copy">
+        Ob du eine Frage zu meinen Büchern hast, dich für ein Lektorat interessierst
+        oder einfach Kontakt aufnehmen möchtest – schreib mir gern.
+      </p>
+    </section>
+
+    <section class="contact-layout" aria-label="Kontaktmöglichkeiten">
+      <div class="contact-aside">
+        <p class="section-kicker">Ein offenes Postfach</p>
+        <h2>Worum geht's?</h2>
+        <p>
+          Vielleicht geht es um <em>Kraftstein – Licht und Schatten</em>, um die
+          englische Ausgabe, ein Schreibprojekt oder eine Frage zum Lektorat.
+        </p>
+        <p>
+          Schreib ein paar Zeilen dazu, worum es geht. Ich freue mich, von dir zu hören.
+        </p>
+        <p class="quiet-note">
+          Und keine Sorge: Für eine gute Nachricht braucht man weder uralte Kraftsteine
+          noch perfekte Rechtschreibung.
+        </p>
+
+        <div class="contact-details">
+          <p class="label">Direkt per E-Mail</p>
+          <!-- Ersetze die Platzhalteradresse unten durch deine echte E-Mail-Adresse. -->
+          <p><a id="email-link" href="mailto:DEINE-EMAIL-ADRESSE">DEINE-EMAIL-ADRESSE</a></p>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <p class="section-kicker">Nachricht verfassen</p>
+        <h2 class="form-heading">Schreib mir</h2>
+        <p class="form-intro">
+          Fülle die Felder aus. Dein E-Mail-Programm öffnet sich anschließend mit deiner Nachricht.
+        </p>
+
+        <form id="contact-form">
+          <div class="field">
+            <label for="name">Dein Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Wie darf ich dich nennen?" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Deine E-Mail-Adresse</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="name@beispiel.de" required>
+          </div>
+
+          <div class="field">
+            <label for="subject">Betreff</label>
+            <input id="subject" name="subject" type="text" placeholder="Worum geht es?" required>
+          </div>
+
+          <div class="field">
+            <label for="message">Deine Nachricht</label>
+            <textarea id="message" name="message" placeholder="Schreib deine Nachricht hier …" required></textarea>
+          </div>
+
+          <p class="form-help">
+            Hinweis: Diese statische Website versendet keine Nachricht direkt über einen Server.
+            Der Entwurf wird in deinem E-Mail-Programm geöffnet.
+          </p>
+
+          <button class="submit-button" type="submit">E-Mail vorbereiten</button>
+          <p class="privacy-note">
+            <strong>Datenschutz:</strong> Die eingegebenen Daten werden von dieser Seite nicht an einen
+            Server übertragen. Beim Öffnen des E-Mail-Programms gelten die Datenschutzbedingungen
+            deines jeweiligen E-Mail-Dienstes.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© <span id="year">2026</span> Ben Talion</span>
+      <nav class="footer-links" aria-label="Rechtliche Informationen">
+        <a href="kontakt.html" aria-current="page">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="agb.html">AGB</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      mobileNav.hidden = isOpen;
+      mobileNav.classList.toggle('is-open', !isOpen);
+    });
+
+    mobileNav.addEventListener('click', (event) => {
+      if (event.target.closest('a')) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileNav.hidden = true;
+        mobileNav.classList.remove('is-open');
+      }
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('contact-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      // WICHTIG: Diese Adresse durch deine echte E-Mail-Adresse ersetzen.
+      const recipient = 'DEINE-EMAIL-ADRESSE';
+      if (recipient === 'DEINE-EMAIL-ADRESSE') {
+        alert('Bitte trage zuerst deine echte E-Mail-Adresse in kontakt.html ein (Suche nach DEINE-EMAIL-ADRESSE).');
+        return;
+      }
+
+      const form = event.currentTarget;
+      const name = form.elements.name.value.trim();
+      const sender = form.elements.email.value.trim();
+      const subject = form.elements.subject.value.trim();
+      const message = form.elements.message.value.trim();
+      const body = `Name: ${name}\nE-Mail: ${sender}\n\n${message}`;
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
