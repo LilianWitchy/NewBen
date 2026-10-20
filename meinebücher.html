@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111018">
+  <meta name="description" content="Entdecke die Bücher von Ben Talion: Kraftstein – Licht und Schatten und Power Stone – Light and Shadow.">
+  <title>Meine Bücher – Ben Talion</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Crimson+Pro:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --night: #111018;
+      --paper: #e9e3df;
+      --muted: #aaa1ad;
+      --gold: #cdb47c;
+      --wine: #80505f;
+      --rule: rgba(205,180,124,.25);
+      --measure: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--paper);
+      background: var(--night);
+      font: 17px/1.78 "Crimson Pro", Georgia, serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 82% 17%, rgba(95,53,75,.18), transparent 38%),
+        radial-gradient(ellipse at 7% 70%, rgba(65,60,89,.13), transparent 35%),
+        linear-gradient(135deg, #111018 0%, #171520 54%, #111018 100%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 13px;
+      z-index: -1;
+      pointer-events: none;
+      border: 1px solid rgba(205,180,124,.07);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 5px;
+    }
+
+    ::selection {
+      color: var(--night);
+      background: var(--gold);
+    }
+
+    /* Navigation */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(17,16,24,.92);
+      border-bottom: 1px solid rgba(205,180,124,.15);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      width: min(calc(100% - 48px), var(--measure));
+      min-height: 78px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      line-height: 1.25;
+    }
+
+    .brand-name {
+      color: var(--gold);
+      font: 500 1.05rem/1.4 "Cinzel", serif;
+      letter-spacing: .16em;
+    }
+
+    .brand-tagline {
+      margin-top: 4px;
+      color: var(--muted);
+      font: 400 .68rem/1.4 "Inter", sans-serif;
+      letter-spacing: .08em;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(15px, 2.4vw, 28px);
+    }
+
+    .desktop-nav a,
+    .mobile-nav a {
+      color: #c0b8c3;
+      font: 400 .76rem/1.5 "Inter", sans-serif;
+      transition: color .2s ease;
+    }
+
+    .desktop-nav a:hover,
+    .mobile-nav a:hover,
+    .desktop-nav a[aria-current="page"],
+    .mobile-nav a[aria-current="page"] {
+      color: var(--gold);
+    }
+
+    .desktop-nav a[aria-current="page"] {
+      text-decoration: underline;
+      text-decoration-color: var(--wine);
+      text-underline-offset: 8px;
+    }
+
+    .menu-toggle {
+      display: none;
+      padding: 9px 12px;
+      border: 1px solid var(--rule);
+      border-radius: 0;
+      color: var(--gold);
+      background: transparent;
+      font: 400 .78rem "Inter", sans-serif;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      padding: 12px 24px 22px;
+      border-top: 1px solid rgba(205,180,124,.12);
+    }
+
+    .mobile-nav.is-open {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    /* Seiteneinstieg */
+
+    main {
+      width: min(calc(100% - 48px), var(--measure));
+      margin: 0 auto;
+    }
+
+    .page-intro {
+      padding: clamp(54px, 8vw, 94px) 0 36px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin: 0 0 16px;
+      color: var(--gold);
+      font: 500 .68rem/1.5 "Inter", sans-serif;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--wine);
+    }
+
+    h1, h2, h3 {
+      font-family: "Cinzel", Georgia, serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.45rem, 6vw, 5.1rem);
+      line-height: 1.13;
+      letter-spacing: -.035em;
+    }
+
+    h1 span {
+      color: var(--gold);
+    }
+
+    .intro-bottom {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .intro-rule {
+      width: 72px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--wine));
+    }
+
+    .intro-note {
+      color: var(--muted);
+      font: italic .95rem/1.5 "Crimson Pro", Georgia, serif;
+    }
+
+    .intro-copy {
+      max-width: 650px;
+      margin: 30px 0 0;
+      color: #c9c0cb;
+      font-size: clamp(1.12rem, 1.8vw, 1.28rem);
+    }
+
+    /* Buchbereich */
+
+    .books-section {
+      padding: 28px 0 100px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 34px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-kicker {
+      margin: 0 0 7px;
+      color: var(--wine);
+      font: 500 .65rem/1.5 "Inter", sans-serif;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--gold);
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      line-height: 1.35;
+    }
+
+    .section-aside {
+      max-width: 260px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      font-style: italic;
+      text-align: right;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(34px, 7vw, 84px);
+    }
+
+    .book {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(135px, .82fr) minmax(0, 1fr);
+      align-items: start;
+      gap: clamp(22px, 3.5vw, 38px);
+    }
+
+    .cover-link {
+      display: block;
+      position: relative;
+      max-width: 255px;
+      margin: 0;
+      transition: transform .25s ease;
+    }
+
+    .cover-link::after {
+      content: "";
+      position: absolute;
+      inset: 8px -8px -8px 8px;
+      border: 1px solid rgba(205,180,124,.3);
+      pointer-events: none;
+      transition: border-color .25s ease;
+    }
+
+    .cover-link:hover {
+      transform: translateY(-4px);
+    }
+
+    .cover-link:hover::after {
+      border-color: rgba(205,180,124,.7);
+    }
+
+    .book-cover {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #211b28;
+      filter: saturate(.88) contrast(1.03);
+    }
+
+    .book-copy {
+      padding-top: 5px;
+    }
+
+    .book-language {
+      margin: 0 0 11px;
+      color: var(--wine);
+      font: 500 .65rem/1.5 "Inter", sans-serif;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .book h3 {
+      margin: 0 0 15px;
+      color: var(--paper);
+      font-size: clamp(1.25rem, 2.3vw, 1.8rem);
+      line-height: 1.35;
+    }
+
+    .book h3 span {
+      display: block;
+      margin-top: 4px;
+      color: var(--gold);
+    }
+
+    .book-description {
+      margin: 0 0 24px;
+      color: #bfb6c2;
+      font-size: 1.05rem;
+    }
+
+    .book-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0 8px;
+      border-bottom: 1px solid rgba(205,180,124,.5);
+      color: var(--gold);
+      font: 500 .73rem/1.5 "Inter", sans-serif;
+      letter-spacing: .04em;
+      transition: color .2s ease, border-color .2s ease;
+    }
+
+    .book-link::after {
+      content: "↗";
+      font-size: 1rem;
+    }
+
+    .book-link:hover {
+      color: #f0dfb2;
+      border-color: var(--gold);
+    }
+
+    .closing-note {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: start;
+      gap: 18px;
+      max-width: 720px;
+      margin: 82px auto 0;
+      padding-top: 25px;
+      border-top: 1px solid rgba(205,180,124,.16);
+    }
+
+    .closing-mark {
+      color: var(--wine);
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+
+    .closing-note p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-style: italic;
+    }
+
+    .closing-note a {
+      color: var(--gold);
+      border-bottom: 1px solid rgba(205,180,124,.4);
+    }
+
+    .closing-note a:hover {
+      color: #f0dfb2;
+    }
+
+    /* Fußzeile */
+
+    .site-footer {
+      border-top: 1px solid rgba(205,180,124,.15);
+      background: rgba(8,7,13,.38);
+    }
+
+    .footer-inner {
+      width: min(calc(100% - 48px), var(--measure));
+      margin: 0 auto;
+      padding: 24px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px 24px;
+      color: #928996;
+      font: 400 .7rem/1.6 "Inter", sans-serif;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 19px;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Responsive Layout */
+
+    @media (max-width: 900px) {
+      .book-grid {
+        gap: 44px;
+      }
+
+      .book {
+        grid-template-columns: minmax(115px, .7fr) minmax(0, 1fr);
+        gap: 24px;
+      }
+
+      .book h3 {
+        font-size: 1.35rem;
+      }
+    }
+
+    @media (max-width: 720px) {
+      body::after {
+        inset: 7px;
+      }
+
+      .header-inner {
+        min-height: 70px;
+        width: calc(100% - 36px);
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      main, .footer-inner {
+        width: calc(100% - 36px);
+      }
+
+      .page-intro {
+        padding: 54px 0 30px;
+      }
+
+      .books-section {
+        padding: 22px 0 65px;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .section-aside {
+        text-align: left;
+      }
+
+      .book-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .book {
+        grid-template-columns: minmax(125px, .65fr) minmax(0, 1fr);
+        gap: 28px;
+      }
+
+      .book-cover {
+        max-width: 240px;
+      }
+
+      .book h3 {
+        font-size: clamp(1.35rem, 5vw, 1.7rem);
+      }
+
+      .closing-note {
+        margin-top: 58px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .brand-name {
+        font-size: .94rem;
+      }
+
+      .brand-tagline {
+        font-size: .61rem;
+      }
+
+      .book {
+        grid-template-columns: minmax(105px, .7fr) minmax(0, 1fr);
+        gap: 20px;
+      }
+
+      .book-description {
+        font-size: 1rem;
+      }
+
+      .book-link {
+        font-size: .68rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Ben Talion – Startseite">
+        <span class="brand-name">BEN TALION</span>
+        <span class="brand-tagline">Zwischen Licht und Schatten</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Hauptnavigation">
+        <a href="index.html">Startseite</a>
+        <a href="about.html">Über mich</a>
+        <a href="meinebücher.html" aria-current="page">Meine Bücher</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+
+      <button class="menu-toggle" id="menu-toggle" type="button"
+              aria-expanded="false" aria-controls="mobile-nav">
+        <span aria-hidden="true">☰</span>
+        <span>Menü</span>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav"
+         aria-label="Mobile Navigation" hidden>
+      <a href="index.html">Startseite</a>
+      <a href="about.html">Über mich</a>
+      <a href="meinebücher.html" aria-current="page">Meine Bücher</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="agb.html">AGB</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-intro" aria-labelledby="page-title">
+      <p class="eyebrow">Die Bücher</p>
+
+      <h1 id="page-title">
+        Willkommen in <span>Ben Talions Welt.</span>
+      </h1>
+
+      <div class="intro-bottom">
+        <div class="intro-rule" aria-hidden="true"></div>
+        <span class="intro-note">
+          Zwischen Licht und Schatten beginnt jede Legende.
+        </span>
+      </div>
+
+      <p class="intro-copy">
+        Ein Reich, in dem uralte Kraftsteine über das Schicksal entscheiden.
+        Hier findest du die bisher veröffentlichten Bücher – auf Deutsch und Englisch.
+      </p>
+    </section>
+
+    <section class="books-section" aria-labelledby="books-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Die Kraftstein-Reihe</p>
+          <h2 id="books-title">Zwei Sprachen. Eine Welt.</h2>
+        </div>
+
+        <p class="section-aside">
+          Wähle deine Sprache und tauche in die Geschichte ein.
+        </p>
+      </div>
+
+      <div class="book-grid">
+        <article class="book">
+          <a class="cover-link"
+             href="https://www.amazon.de/Kraftstein-Schatten-T-Ben-Talion-ebook/dp/B0DJK71WNW"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Kraftstein – Licht und Schatten bei Amazon ansehen">
+            <img class="book-cover"
+                 src="kraftsteinb1.JPG"
+                 alt="Buchcover: Kraftstein – Licht und Schatten"
+                 loading="lazy">
+          </a>
+
+          <div class="book-copy">
+            <p class="book-language">Deutsche Ausgabe</p>
+            <h3>Kraftstein <span>Licht und Schatten</span></h3>
+
+            <p class="book-description">
+              Die Geschichte beginnt dort, wo uralte Kräfte und das Schicksal
+              einer Welt aufeinandertreffen.
+            </p>
+
+            <a class="book-link"
+               href="https://www.amazon.de/Kraftstein-Schatten-T-Ben-Talion-ebook/dp/B0DJK71WNW"
+               target="_blank"
+               rel="noopener noreferrer">
+              Bei Amazon ansehen
+            </a>
+          </div>
+        </article>
+
+        <article class="book">
+          <a class="cover-link"
+             href="https://www.amazon.de/Power-Stone-Light-Shadow-English-ebook/dp/B0DK55KPXG"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Power Stone – Light and Shadow bei Amazon ansehen">
+            <img class="book-cover"
+                 src="powerstoneb1.JPG"
+                 alt="Book cover: Power Stone – Light and Shadow"
+                 loading="lazy">
+          </a>
+
+          <div class="book-copy">
+            <p class="book-language">English edition</p>
+            <h3>Power Stone <span>Light and Shadow</span></h3>
+
+            <p class="book-description">
+              The same world of ancient power stones, difficult choices,
+              and a fate shaped by light and shadow.
+            </p>
+
+            <a class="book-link"
+               href="https://www.amazon.de/Power-Stone-Light-Shadow-English-ebook/dp/B0DK55KPXG"
+               target="_blank"
+               rel="noopener noreferrer">
+              View on Amazon
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="closing-note">
+        <span class="closing-mark" aria-hidden="true">✦</span>
+        <p>
+          Fragen zu den Büchern oder Lust auf mehr?
+          <a href="kontakt.html">Schreib mir gern.</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© <span id="year">2026</span> Ben Talion</span>
+
+      <nav class="footer-links" aria-label="Rechtliche Informationen">
+        <a href="kontakt.html">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="agb.html">AGB</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      mobileNav.hidden = isOpen;
+      mobileNav.classList.toggle('is-open', !isOpen);
+    });
+
+    mobileNav.addEventListener('click', (event) => {
+      if (event.target.closest('a')) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileNav.hidden = true;
+        mobileNav.classList.remove('is-open');
+      }
+    });
+
+    document.getElementById('year').textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
